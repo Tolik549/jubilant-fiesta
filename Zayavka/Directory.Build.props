@@ -1,0 +1,12 @@
+<Project>
+  <!--
+    Разрешаем сборку проектов, нацеленных на Windows (WinForms), на не-Windows ОС.
+    Это позволяет компилировать решение на Linux/CI, а запускать — на Windows.
+  -->
+  <PropertyGroup>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+</Project>

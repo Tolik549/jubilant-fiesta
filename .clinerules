@@ -1,0 +1,29 @@
+# Правила проекта Zayavka (C# / .NET 10 / WinForms)
+
+## Сборка exe — единственный «раздаточный» путь
+
+Готовый к переносу exe ВСЕГДА публикуется сюда (пользователь берёт файл именно отсюда):
+
+    /workspaces/dotnet-codespaces/Zayavka/publish/win-x64-selfcontained/Zayavka.WinForms.exe
+
+Команда сборки:
+
+    cd /workspaces/dotnet-codespaces/Zayavka
+    dotnet publish src/Zayavka.WinForms -c Release -r win-x64 \
+      --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true \
+      -o publish/win-x64-selfcontained
+
+Действует для любой задачи, где нужен «собранный exe»: после правок кода —
+пересобрать в `publish/win-x64-selfcontained`.
+
+Правила:
+1. Не выдавать пользователю exe по другим путям (`bin/.../publish/` и т. п.) —
+   там остаются устаревшие сборки, которые уже приводили к путанице.
+2. После публикации удалять промежуточные артефакты: `rm -rf src/*/bin/Release`.
+3. Дополнительно (по запросу) собирать framework-dependent в
+   `publish/win-x64-framework-dependent` и архив исходников `publish/zayavka-source.zip`.
+4. Перед публикацией прогонять: `dotnet build Zayavka.slnx` и `dotnet test Zayavka.slnx`.
+5. Версия сборки выводится в заголовке окна («Импорт заявок <версия>»); при выпуске
+   новой версии повышать `<Version>` в `src/Zayavka.WinForms/Zayavka.WinForms.csproj`.
+
+Готовый скрипт: `Zayavka/publish.sh` (Linux/Codespace) и `Zayavka/publish.cmd` (Windows).

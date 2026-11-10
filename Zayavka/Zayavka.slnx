@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Zayavka.Domain/Zayavka.Domain.csproj" />
+    <Project Path="src/Zayavka.Infrastructure/Zayavka.Infrastructure.csproj" />
+    <Project Path="src/Zayavka.WinForms/Zayavka.WinForms.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Zayavka.Tests/Zayavka.Tests.csproj" />
+  </Folder>
+</Solution>
